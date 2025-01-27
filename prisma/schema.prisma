@@ -1,0 +1,28 @@
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+    // relationMode = "prisma"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id           String   @id @default(cuid())
+    github_id    String
+    username     String   @unique
+    email        String   @unique
+    text         String?
+    access_token String   @unique
+    image        String
+    isNotStarted Boolean  @default(true)
+    isProcessing Boolean  @default(false)
+    isQueue      Boolean  @default(true)
+    isCompleted  Boolean  @default(false)
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+
+    @@index([email, username])
+}

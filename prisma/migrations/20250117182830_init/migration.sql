@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "isNotStarted" BOOLEAN NOT NULL DEFAULT true,
+ALTER COLUMN "text" DROP NOT NULL;
