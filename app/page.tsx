@@ -1,6 +1,7 @@
 import { auth } from "auth";
 import Image from "next/image";
 import MyBackground from "@/my-background.webp";
+import Heatmap from "@/heatmap.png";
 import { SignIn } from "@/components/auth-components";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
@@ -64,8 +65,13 @@ export default async function Index() {
       />
       <div className="z-10 bg-[#0009] absolute top-0 left-0 h-full object-cover w-full " />
       <div className="z-20 text-center w-[80%] m-auto">
+        <Image
+          src={Heatmap}
+          alt="Background Image"
+          className="object-contain h-14 md:h-32 m-auto rounded-xl shadow-[0px_4px_15px_rgba(255,255,255,0.3)] w-fit"
+        />
         <p
-          className="text-sm md:text-lg capitalize shadow-2xl"
+          className="text-sm md:text-lg capitalize shadow-2xl mt-8"
           style={{ fontFamily: "Geist" }}
         >
           Personalize your GitHub heatmap by adding your name or a custom

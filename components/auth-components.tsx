@@ -11,21 +11,28 @@ export function SignIn({
     <form
       action={async () => {
         "use server";
-        await signIn(provider)
+        await signIn(provider);
       }}
     >
       <button
         type="submit"
-        className="bg-[#24292d] mt-6 flex w-fit px-4 gap-3 py-3 cursor-pointer mx-auto hover:bg-[#222] shadow-2xl transition-all duration-300"
+        className="relative bg-[#24292d] mt-6 flex w-fit p-[2px] cursor-pointer mx-auto group overflow-hidden rounded-lg"
       >
-        <Image
-          src={GitHubLogo}
-          alt="Background Image"
-          height={24}
-          width={24}
-          className=" bg-white rounded-full"
-        />
-        Sign in with GitHub
+        {/* Glowing effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-md opacity-70 group-hover:opacity-100 group-hover:blur-lg transition-all duration-500"></div>
+
+        {/* Inner button content */}
+
+        <div className="relative z-10 flex items-center gap-3 px-4 py-3 bg-[#24292d] shadow-lg rounded-lg">
+          <Image
+            src={GitHubLogo}
+            alt="GitHub Logo"
+            height={24}
+            width={24}
+            className="bg-white rounded-full"
+          />
+          <span className="text-white font-medium">Sign in with GitHub</span>
+        </div>
       </button>
     </form>
   );
