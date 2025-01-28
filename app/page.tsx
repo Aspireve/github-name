@@ -1,6 +1,6 @@
 import { auth } from "auth";
 import Image from "next/image";
-import MyBackground from "@/app/_assets/my-background.png";
+import MyBackground from "@/my-background.webp";
 import { SignIn } from "@/components/auth-components";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";

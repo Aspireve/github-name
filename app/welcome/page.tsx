@@ -1,6 +1,6 @@
 import { auth } from "auth";
 import Image from "next/image";
-import MyBackground from "@/app/_assets/my-background.png";
+import MyBackground from "@/my-background.webp";
 import { PrismaClient } from "@prisma/client";
 import CustomLink from "@/components/custom-link";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ export default async function Index() {
         github_id: session.user.name as string,
       },
     });
+    if(doesExists?.text) redirect("/generate-repo");
     if (!doesExists) {
       await prisma.user.create({
         data: {

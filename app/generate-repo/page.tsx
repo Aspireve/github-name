@@ -1,6 +1,6 @@
 import { auth } from "auth";
 import Image from "next/image";
-import MyBackground from "@/app/_assets/my-background.png";
+import MyBackground from "@/my-background.webp";
 import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 
