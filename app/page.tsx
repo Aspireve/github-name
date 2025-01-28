@@ -3,6 +3,50 @@ import Image from "next/image";
 import MyBackground from "@/app/_assets/my-background.png";
 import { SignIn } from "@/components/auth-components";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+// app/page.tsx
+export const metadata: Metadata = {
+  title: "Write Your Name on the GitHub Heatmap",
+  description:
+    "Turn your GitHub heatmap into a masterpiece! Create personalized patterns, write your name, or craft stunning designs directly on your GitHub contribution graph. Let's make your profile shine!",
+  openGraph: {
+    title: "Write Your Name on GitHub's Heatmap",
+    description:
+      "Transform your GitHub contribution graph into art. Write your name, draw patterns, or just show off your creativity with Heatmap Wizard!",
+    url: "https://github-name.csteve40.com",
+    images: [
+      {
+        url: "https://github-name.csteve40.com/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Screenshot of a GitHub heatmap with a name written on it",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Write Your Name on GitHub's Heatmap",
+    description:
+      "Unleash your creativity on GitHub! Design your heatmap, write your name, or create patterns to impress your followers.",
+    images: ["https://github-name.csteve40.com/logo.png"],
+  },
+  keywords: [
+    "GitHub heatmap",
+    "GitHub contribution graph",
+    "write name on GitHub heatmap",
+    "heatmap art",
+    "GitHub profile customization",
+    "GitHub hacks",
+    "GitHub tips",
+  ],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
+  authors: [{ name: "Steve Fernandes", url: "https://github.com/Aspireve" }],
+};
 
 export default async function Index() {
   const session = await auth();
