@@ -8,6 +8,18 @@ import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 import { Label } from "@/components/ui/label";
 
+function roundToNearestSunday(date: Date): string {
+  if (isNaN(date.getTime())) throw new Error("Invalid date"); // Handle invalid dates
+
+  const dayOfWeek = date.getDay(); // 0 (Sunday) to 6 (Saturday)
+  const diff = dayOfWeek < 4 ? -dayOfWeek : 7 - dayOfWeek; // Round based on mid-week
+
+  const nearestSunday = new Date(date);
+  nearestSunday.setDate(date.getDate() + diff);
+
+  return nearestSunday.toISOString().split("T")[0]; // Format YYYY-MM-DD
+}
+
 export default async function Index() {
   const session = await auth();
   const prisma = new PrismaClient();
@@ -57,7 +69,8 @@ export default async function Index() {
     const prisma = new PrismaClient();
     const githubId = session?.user?.name as string;
     const name = formData.get("name") as string;
-    const date = formData.get("date") as string;
+    const dateString = formData.get("date") as string;
+    const date = roundToNearestSunday(new Date(dateString));
 
     const user = await prisma.user.findFirst({
       where: {
