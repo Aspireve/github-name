@@ -21,7 +21,7 @@ export default async function Index() {
   if (!status?.text) redirect("/welcome");
   else if (status.isNotStarted) {
     await fetch(
-      `${process.env.REDIS_BULL_URL}?name=${status.github_id}&email=${status.email}&accessToken=${status.access_token}&repoName=generated-1&text=${status.text}`,
+      `${process.env.REDIS_BULL_URL}?name=${status.github_id}&email=${status.email}&accessToken=${status.access_token}&repoName=generated-1&text=${status.text}&date=${status.date}`,
       {
         method: "GET",
       }

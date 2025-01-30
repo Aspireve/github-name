@@ -6,6 +6,7 @@ import CustomLink from "@/components/custom-link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
+import { Label } from "@/components/ui/label";
 
 export default async function Index() {
   const session = await auth();
@@ -19,7 +20,7 @@ export default async function Index() {
         github_id: session.user.name as string,
       },
     });
-    if(doesExists?.text) redirect("/generate-repo");
+    if (doesExists?.text) redirect("/generate-repo");
     if (!doesExists) {
       await prisma.user.create({
         data: {
@@ -56,6 +57,7 @@ export default async function Index() {
     const prisma = new PrismaClient();
     const githubId = session?.user?.name as string;
     const name = formData.get("name") as string;
+    const date = formData.get("date") as string;
 
     const user = await prisma.user.findFirst({
       where: {
@@ -70,6 +72,7 @@ export default async function Index() {
         },
         data: {
           text: name,
+          date: date,
         },
       });
       redirect("/generate-repo");
@@ -108,7 +111,8 @@ export default async function Index() {
           TYPE YOUR NAME
         </h1>
         <form action={handleFormSubmission}>
-          <div className=" mt-6 md:mt-20 border-b-2 border-gray-600 focus-within:border-gray-400 transition-all duration-300">
+          <div className=" mt-10 md:mt-20 border-b-2 border-gray-600 focus-within:border-gray-400 transition-all duration-300">
+            <Label htmlFor="picture">Enter your name (only aplhabets)</Label>
             <Input
               name="name"
               required
@@ -126,6 +130,36 @@ export default async function Index() {
               }}
             />
           </div>
+          <div className="mt-5 md:mt-10 border-b-2 border-gray-600 focus-within:border-gray-400 transition-all duration-300">
+            <div className="w-full">
+              <Label
+                htmlFor="date"
+                className="w-full text-left"
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                }}
+              >
+                Enter start date
+              </Label>
+            </div>
+            <Input
+              type="date"
+              name="date"
+              required
+              defaultValue="2024-01-07"
+              className="bg-transparent outline-none border-none focus-within:ring-0 ring-transparent !focus:outline-none text-lg md:text-2xl"
+              style={{
+                outline: "none",
+                boxShadow: "none",
+                fontFamily: "Geist",
+                background: "radial-gradient(circle, #FFFFFF 25%, #999999 75%)",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+              }}
+            />
+          </div>
+
           <Button
             type="submit"
             variant="outline"
