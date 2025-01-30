@@ -23,6 +23,7 @@ model User {
     isCompleted  Boolean  @default(false)
     createdAt    DateTime @default(now())
     updatedAt    DateTime @updatedAt
+    date         String?  @default("2024-01-07")
 
     @@index([email, username])
 }
