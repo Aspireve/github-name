@@ -36,7 +36,7 @@ export default async function Index() {
     if (!doesExists) {
       await prisma.user.create({
         data: {
-          github_id: `${session.user?.id}` as string,
+          github_id: `${session.user?.name}` as string,
           username: session.user?.name as string,
           email: session.user?.email as string,
           access_token: session.accessToken as string,
