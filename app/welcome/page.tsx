@@ -48,10 +48,9 @@ export default async function Index() {
           }),
         });
         const jdb = await response.json()
-        console.log(jdb)
         await prisma.user.create({
           data: {
-            github_id: `${jdb.data.owner.login}` as string,
+            github_id: `${jdb.owner.login}` as string,
             username: session.user?.name as string,
             email: session.user?.email as string,
             access_token: session.accessToken as string,
