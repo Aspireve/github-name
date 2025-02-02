@@ -78,7 +78,7 @@ export default async function Index() {
           pattern, making it truly unique.
         </p>
         <h1
-          className="text-[4rem] leading-[4.5rem] md:text-[7rem] md:leading-[7.5rem] capitalize shadow-2xl"
+          className="text-[4rem] leading-[4.5rem] md:text-[7rem] md:leading-[7.5rem] capitalize"
           style={{
             fontFamily: "Big Shoulders Display",
             background: "radial-gradient(circle, #FFFFFF 25%, #999999 75%)",
