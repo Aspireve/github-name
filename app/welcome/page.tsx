@@ -24,7 +24,7 @@ export default async function Index() {
   const session = await auth();
   const prisma = new PrismaClient();
 
-  // if (!session) redirect("/");
+  if (!session) redirect("/");
 
   if (session?.user) {
     const doesExists = await prisma.user.findFirst({
