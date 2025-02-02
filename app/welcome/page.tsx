@@ -34,15 +34,6 @@ export default async function Index() {
     });
     if (doesExists?.text) redirect("/generate-repo");
     if (!doesExists) {
-      await prisma.user.create({
-        data: {
-          github_id: `${session.user?.name}` as string,
-          username: session.user?.name as string,
-          email: session.user?.email as string,
-          access_token: session.accessToken as string,
-          image: session.user?.image as string,
-        },
-      });
       try {
         const response = await fetch("https://api.github.com/user/repos", {
           method: "POST",
@@ -55,6 +46,16 @@ export default async function Index() {
             description: "Repository created via OAuth",
             private: false, // Set to true for a private repo
           }),
+        });
+        const jdb = await response.json()
+        await prisma.user.create({
+          data: {
+            github_id: `${jdb.owner.login}` as string,
+            username: session.user?.name as string,
+            email: session.user?.email as string,
+            access_token: session.accessToken as string,
+            image: session.user?.image as string,
+          },
         });
       } catch (error) {
         console.error("Error creating repository:", error);
