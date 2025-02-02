@@ -75,7 +75,7 @@ export default async function Index() {
 
     const user = await prisma.user.findFirst({
       where: {
-        github_id: githubId,
+        username: githubId,
       },
     });
 
