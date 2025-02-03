@@ -4,7 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   debug: !!process.env.AUTH_DEBUG,
-  theme: { logo: "./logo.png" },
+  theme: { logo: "https://github-name.csteve40.com/logo.png" },
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
